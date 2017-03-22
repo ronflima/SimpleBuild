@@ -22,5 +22,5 @@ behavior by creating your own rules on _project.mk_.
 
 # License
 
-This project is released under (MIT License)[LICENSE].
+This project is released under [MIT License](LICENSE).
 
