@@ -25,11 +25,13 @@
 # Author: Ronaldo Faria Lima <ronaldo@nineteen.com.br>
 
 CONFIGURATION=Release
-BUILDSETTINGS=-derivedDataPath build -jobs 8 -destination "generic/platform=iOS"
+BUILDDIR=build
+DESTINATION="generic/platform=iOS"
 
 include project.mk
 
 DEPS=${MODULES:%=Modules/%}
+BUILDSETTINGS=-derivedDataPath $(BUILDDIR) -jobs 8 -destination $(DESTINATION)
 
 all: splash
 	@echo "Building $(PROJECT)..."
@@ -58,7 +60,7 @@ clean: splash
 	@echo "Done."
 
 clean-all: clean
-	@\rm -fR build
+	@\rm -fR $(BUILDDIR)
 	@echo "Derived and intermediate data purged. Done."
 
 splash:

@@ -55,3 +55,17 @@ TARGET=YourProjectTarget
 # the correct directory.
 
 # DEPS=${MODULES:%=Modules/%}
+
+#
+# Uncomment and edit below to customize where your derived data will
+# reside. CAREFUL: the clean-all target will recursively delete this directory.
+#
+
+# BUILDDIR=build
+
+#
+# Uncomment and edit below to customize Xcode's destination settings. By
+# default, it uses the generic setting for iOS compilation.
+#
+
+# DESTINATION="generic/platform=iOS"
