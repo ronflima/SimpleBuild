@@ -20,6 +20,9 @@ Install the Makefile on your project directory. Create a _project.mk_ file with
 your project's definitions and you are set. You can customize the Makefile
 behavior by creating your own rules on _project.mk_.
 
+Be sure to have both files _Makefile_ and _project.mk_ on the same directory of
+your workspace or project bundles.
+
 # License
 
 This project is released under [MIT License](LICENSE).
