@@ -27,6 +27,8 @@
 CONFIGURATION=Release
 BUILDDIR=build
 DESTINATION="generic/platform=iOS"
+ARCHIVE_PATH=$(BUILDDIR)/archive
+EXPORT_PATH=$(BUILDDIR)/export
 
 include project.mk
 
@@ -36,6 +38,14 @@ BUILDSETTINGS=-derivedDataPath $(BUILDDIR) -jobs 8 -destination $(DESTINATION)
 all: splash
 	@echo "Building $(PROJECT)..."
 	@xcodebuild $(BUILDSETTINGS) -scheme $(SCHEME) -configuration $(CONFIGURATION) -project $(PROJECT) build 
+	@echo "Done."
+
+archive: splash
+	@echo "Archiving $(PROJECT)..."
+	@$(eval BUILDSETTINGS="$(BUILDSETTINGS) -exportArchive -archivePath $(ARCHIVE_PATH) -exportPath $(EXPORT_PATH) -exportOptionsPList $(BUILDDIR)")
+	@-mkdir $(ARCHIVE_PATH)
+	@-mkdir $(EXPORT_PATH)
+	@xcodebuild $(BUILDSETTINGS) -scheme $(SCHEME) -configuration $(CONFIGURATION) -project $(PROJECT) 2>&1 > build.log
 	@echo "Done."
 
 deps: splash
@@ -64,6 +74,7 @@ clean-all: clean
 	@echo "Derived and intermediate data purged. Done."
 
 splash:
+ifndef NOSPLASH
 	@echo " _____ _                 _       ______       _ _     _ "
 	@echo "/  ___(_)               | |      | ___ \     (_) |   | |"
 	@echo "\ \`--. _ _ __ ___  _ __ | | ___  | |_/ /_   _ _| | __| |"
@@ -74,3 +85,4 @@ splash:
 	@echo "                  |_|\n"
 	@echo "${PROJECT:%.xcodeproj=%} Automation"
 	@echo "\n"
+endif
